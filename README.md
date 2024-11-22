@@ -173,3 +173,25 @@ To retrieve the password:
 - Access the terminal where your EC2 instance is open and run the command to display the initial admin password needed to proceed with the Jenkins setup.
 - Copy the code and paste it into the Jenkins Getting Started screen.
 - Follow the on-screen instructions to complete the setup. Once done, you’ll be directed to the Jenkins dashboard.
+
+3. **Then click on Installed Suggested Plugins and then this appears**:
+
+
+4. **Then click on Installed Suggested Plugins and then this appears**:
+
+
+5. **Install Plugins in Jenkins**:
+
+Now, let’s install some plugins in Jenkins:
+- NodeJS
+- Pipeline: Stage View
+- SonarQube Scanner
+- Docker Commons
+- Docker
+- Docker Pipeline
+- Docker API
+- Eclipse Temurin installer
+
+
+  
+
