@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: prime-deploy
+  name: prime-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prime-deploy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: prime-deploy
+    spec:
+      containers:
+      - image: fir3eye/prime-clone:latest
+        name: prime
+        ports:
+        - containerPort: 80
+        resources: {}
+status: {}
