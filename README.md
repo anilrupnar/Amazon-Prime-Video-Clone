@@ -13,7 +13,7 @@ Automate the deployment of an Amazon Video clone application using Docker and Je
 5. **Trivy**: Installed for Docker image vulnerability scanning.
 6. **Git Repository**: Version-controlled source code for the application.
 
---
+---
 
 ## Key Features
 
