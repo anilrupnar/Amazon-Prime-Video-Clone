@@ -175,49 +175,296 @@ To retrieve the password:
 ### 4. Then click on Installed Suggested Plugins and then this appears:
 
 
-### 5. Install Plugins in Jenkins:
 
-Now, let’s install some plugins in Jenkins:
-- NodeJS
-- Pipeline: Stage View
-- SonarQube Scanner
-- Docker Commons
-- Docker
-- Docker Pipeline
-- Docker API
-- Eclipse Temurin installer
 ## Step 4: Install Docker and Set Up SonarQube
 
 Since Docker isn’t installed on our EC2 instance yet, let’s install Docker and Docker Compose, then set up SonarQube for code analysis.
 
-1. **Install Docker**:
+### 1. Install Docker:
    - Run the command to install Docker:
      ```bash
      sudo apt install docker.io  # Install Docker
      ```
 
 
-2. **Adjust Docker Permissions**:
+### 2. Adjust Docker Permissions:
    - After installing Docker Compose, execute the following command to adjust permissions for other users to access the Docker socket:
      ```bash
      sudo chmod 666 /var/run/docker.sock  # Grant access to Docker socket
      ```
 
-3. **Install SonarQube**:
+### 3. Install SonarQube:
    - Now, set up SonarQube on our EC2 instance using Docker with the following command:
      ```bash
      docker run -d -p 9000:9000 sonarqube:lts-community  # Run SonarQube container
      ```
    - This command starts a SonarQube server in detached mode, mapping port 9000 on the host to port 9000 on the container. This setup enables us to perform code analysis and quality checks.
      
-  ![Docker Output ](https://github.com/anilrupnar/Deploying-Virtual-Browser/blob/main/images/docker%209000.png )
+  ![Docker Output ]( )
 
-4. **Access SonarQube**:
-   - You can access SonarQube’s web interface at `http://localhost:9000` or by replacing `localhost` with your EC2 instance's public IP address if accessing it remotely.
-   
-   Example: `http://publicIP:9000`
+### 4. Access SonarQube and Configure SonarQube
+Access the SonarQube web interface using a browser:  
+- **Local Access**: `http://localhost:9000`  
+- **Remote Access**: Replace `localhost` with your EC2 instance's public IP address. Example:  
+  `http://<publicIP>:9000`  
 
-   SonarQube will be available on port 9000, allowing you to perform code quality analysis on your projects.
+SonarQube runs on port `9000` and allows you to analyze your project's code quality.
+
+### 5. Initial Login
+Default **username**: `admin`  
+Default **password**: `admin`  
+After the first login, you will be prompted to change the password for security.
+
+### 6. Create a SonarQube Token
+1. Navigate to **Administration → Security → Users → Tokens**.
+2. Enter a **Token Name**: `sonar`.
+3. Click **Generate** and copy the **Sonar-Secret Token**.
+4. Save this token securely, as it will not be displayed again.
+
+### 7. Set Up a Project in SonarQube
+1. Go to **Projects → Manually**.
+2. Enter the following details:
+   - **Project Display Name**: `prime-clone`
+   - **Project Key**: `prime-clone`
+   - **Main Branch Name**: `main`
+3. Click **Set Up → Locally**.
+4. Choose **Use Existing Value** and paste the **Sonar-Secret Token**.
+5. Select **Continue → Other → Linux**.
+6. Copy the provided commands to set up and run the SonarQube Scanner on your local machine.
+
+### 8. Configure Quality Gates
+1. Navigate to **Quality Gate → Create**.
+2. Enter the following details:
+   - **Name**: `Jenkins`
+   - Click **Save**.
+
+### 9. Configure a Webhook for Jenkins
+1. Go to **Administration → Configurations → Webhooks**.
+2. Click **Create** and provide the following details:
+   - **Name**: `Jenkins`
+   - **URL**: `<jenkins-url>/sonarqube-webhook/`  
+     Example: `http://<publicIP>:8080/sonarqube-webhook/`
+3. Click **Create**.
+
+SonarQube is now configured for integration with Jenkins and ready for analyzing your projects.
+
+
+## Stage 5: Installing Trivy on EC2 
+
+```bash
+sudo apt-get install wget apt-transport-https gnupg lsb-release -y
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+sudo apt-get update
+sudo apt-get install trivy -y
+```
+
+## Step 6: Install Plugins and Configure Jenkins
+
+### 1. Install Plugins
+1. Navigate to **Manage Jenkins → Plugins → Available Plugins**.
+2. Search and install the following plugins:
+   - **NodeJS**
+   - **Pipeline: Stage View**
+   - **SonarQube Scanner**
+   - **Docker**
+   - **Docker Commons**
+   - **Docker Pipeline**
+   - **Docker API**
+   - **Eclipse Temurin Installer**
+3. Click **Install** to add these plugins to Jenkins.
+
+---
+
+### 2. Add Credentials for SonarQube and DockerHub
+1. Go to **Manage Jenkins → Credentials → Global → Add Credentials**.
+2. Add **SonarQube Token**:
+   - **Kind**: Secret Text
+   - **Secret**: Paste the secret token from SonarQube.
+   - **ID**: `sonar-cred`
+   - **Description**: `sonar-cred`
+   - Click **Create**.
+3. Add **DockerHub Credentials**:
+   - **Kind**: Username with Password
+   - **Username**: Your DockerHub username.
+   - **Password**: Your DockerHub password.
+   - **ID**: `docker-cred`
+   - **Description**: `docker-cred`
+   - Click **Create**.
+
+### 3. Configure SonarQube in Jenkins
+1. Go to **Manage Jenkins → System → SonarQube Installations**.
+2. Click **Add SonarQube** and fill in the following details:
+   - **Name**: `sonar`
+   - **Server URL**: URL of your SonarQube server (e.g., `http://<publicIP>:9000`).
+   - **Sonar Authentication Token**: Select `sonar-cred` from the dropdown.
+3. Click **Apply** and **Save**.
+
+### 4. Configure Tools in Jenkins
+1. Go to **Manage Jenkins → Global Tool Configuration**.
+2. Configure **JDK**:
+   - Scroll to **JDK Installations**.
+   - Click **Add JDK**.
+   - **Name**: `jdk17`
+   - Check **Install Automatically**.
+3. Configure **SonarQube Scanner**:
+   - Scroll to **SonarQube Scanner Installations**.
+   - Click **Add SonarQube Scanner**.
+   - **Name**: `sonar`
+   - Check **Install Automatically**.
+4. Configure **NodeJS**:
+   - Scroll to **NodeJS Installations**.
+   - Click **Add NodeJS**.
+   - **Name**: `node16`
+   - **Version**: `NodeJS 16.20.0`
+5. Click **Apply** and **Save**.
+
+## Step 7: Implement the CI/CD Pipeline in Jenkins
+
+### Create a Pipeline Job
+1. Go to the Jenkins dashboard and click **New Item**.
+2. Enter **Name**: `prime-CICD`.
+3. Select **Pipeline** and click **OK**.
+4. Configure the job:
+   - **Discard old builds**: Check this option and set **Max # of builds to keep** to `2`.
+   - **Pipeline Definition**: Choose **Pipeline script** and paste the pipeline code below.
+5. Save the configuration.
+
+### Pipeline Code
+
+```groovy
+pipeline {
+    agent any
+
+    tools {
+        jdk 'jdk17'
+        nodejs 'node16' // Ensure 'node16' is configured in Jenkins under Manage Jenkins > Global Tool Configuration
+    }
+    environment {
+        SCANNER_HOME = tool 'sonar'
+    }
+
+    stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+
+        stage('Git Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/harshitsahu2311/Amazon-Prime-Clone-App.git'
+            }
+        }
+
+        stage("SonarQube Analysis") {
+            steps {
+                withSonarQubeEnv('sonar') {
+                    sh '''
+                        $SCANNER_HOME/bin/sonar-scanner \
+                        -Dsonar.projectName=prime-clone \
+                        -Dsonar.projectKey=prime-clone
+                    '''
+                }
+            }
+        }
+
+        stage("Quality Gate") {
+            steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-cred'
+                }
+            }
+        }
+
+        stage("Trivy File Scan") {
+            steps {
+                sh "trivy fs . > trivy.txt"
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build the Docker image tagged as 'prime-clone:latest'
+                    sh "docker build -t prime-clone:latest ."
+                }
+            }
+        }
+
+        stage("Trivy Image Scan") {
+            steps {
+                sh "trivy image prime-clone:latest"
+            }
+        }
+
+        stage('Tag & Push to DockerHub') {
+            steps {
+                script {
+                    withDockerRegistry(credentialsId: 'docker-cred') {
+                        sh "docker tag prime-clone:latest harshitsahu2311/prime-clone:latest"
+                        sh "docker push harshitsahu2311/prime-clone:latest"
+                    }
+                }
+            }
+        }
+
+        stage("Deploy to Container") {
+            steps {
+                sh 'docker run -d --name amazon-prime -p 80:80 harshitsahu2311/prime-clone:latest'
+            }
+        }
+    }
+}
+
+## Step 8: Build and Troubleshoot the Pipeline
+
+1. **Run the Pipeline**:
+   - After saving the pipeline configuration, go to the pipeline job (`prime-CICD`) in Jenkins.
+   - Click **Build Now** to trigger the CI/CD pipeline.
+
+2. **Important Note**:
+   - The pipeline may not succeed on the first attempt.
+   - Errors can occur due to environmental dependencies or misconfigurations.
+
+3. **Troubleshooting Errors**:
+   - Check the **Console Output** of the failed stage for error details.
+   - Identify the cause of the issue (e.g., missing tools, incorrect configurations, permission issues).
+   - Make necessary changes in the environment or configuration and re-run the pipeline.
+
+4. **Access the Deployed Application**:
+   - After the pipeline completes successfully, access the application using the **Public IP address** of the EC2 instance.
+   - Open a web browser and navigate to `http://<EC2-public-ip>`.
+
+5. **Validate Deployment**:
+   - Ensure that the application loads correctly and functions as expected.
+   - If the application does not load, revisit the **Deploy to Container** stage and confirm the Docker container is running.
+
+   ```bash
+   # Check running containers
+   docker ps
+
+   ```
+
+## Step 8: Final Application Deployed Successfully
+
+
+
+
+
+
+
+
+
 
   
+**Thank you for reading my README file! 😊**
 
+**Feel free to connect with me:**
+
+- **LinkedIn**: [Anil Rupnar](https://www.linkedin.com/in/anilrupnar/)
+- **Email**: anilrupnar2003@gmail.com
+
+
+**Project Creadit**
+ - Miroslav Šedivý : https://github.com/m1k1o
