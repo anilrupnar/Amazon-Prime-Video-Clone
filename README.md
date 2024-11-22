@@ -69,9 +69,9 @@ Automate the deployment of an Amazon Video clone application using Docker and Je
 
 ---
 
-## Setup Instructions
+# Setup Instructions
 
-# Launch an EC2 Instance on AWS
+## Launch an EC2 Instance on AWS
 
 ## Overview
 This guide provides step-by-step instructions to launch an Amazon EC2 instance configured for development or deployment purposes.
@@ -82,7 +82,7 @@ This guide provides step-by-step instructions to launch an Amazon EC2 instance c
 - Log in to the [AWS Management Console](https://aws.amazon.com/console/).
 - Navigate to **Services > EC2** to access the EC2 Dashboard.
 
-#### 2. Launch an Instance
+### 2. Launch an Instance
 1. **Name and Tags**  
    - Provide a name for your instance (e.g., `prime-eks`).
 
@@ -92,14 +92,14 @@ This guide provides step-by-step instructions to launch an Amazon EC2 instance c
 3. **Select Instance Type**  
    - Choose **t2.medium** for sufficient CPU and memory resources.
 
-#### 3. Configure Instance Details
+### 3. Configure Instance Details
 - Leave the default settings unless customization is required.
 - Ensure **Auto-assign Public IP** is **enabled** for remote access.
 
-#### 4. Add Storage
+### 4. Add Storage
 - Allocate **25 GiB** or more, depending on the requirements of your application.
 
-#### 5. Configure Security Group
+### 5. Configure Security Group
 Create a new security group and add the following inbound rules:
 
 | Type         | Protocol | Port Range | Source              | Purpose                                   |
@@ -110,14 +110,14 @@ Create a new security group and add the following inbound rules:
 | Custom TCP   | TCP      | 9000       | Anywhere (0.0.0.0/0)| For SonarQube or similar services.       |
 | Custom TCP   | TCP      | 8080       | Anywhere (0.0.0.0/0)| For Jenkins or other tools.              |
 
-#### 6. Review and Launch
+### 6. Review and Launch
 - Confirm all configuration settings and click **Launch**.
 
-#### 7. Key Pair
+### 7. Key Pair
 - Create a new key pair or use an existing one for SSH access:
   - Download the `.pem` file securely.
 
-### 2. Connect to the Instance Using MobaXterm and `.pem` Key File
+## Step 2. Connect to the Instance Using MobaXterm and `.pem` Key File
 
 To connect to the EC2 instance using MobaXterm and the `.pem` key file, follow these steps:
 
@@ -135,9 +135,9 @@ To connect to the EC2 instance using MobaXterm and the `.pem` key file, follow t
 5. **Successful Connection**:
    - You should now have access to your EC2 instance's terminal.
 
-### Step 3: Install Jenkins
+## Step 3: Install Jenkins
 
-1. **Download and Run Jenkins**:
+### 1. Download and Run Jenkins:
    
 ```bash
 #!/bin/bash
@@ -156,7 +156,7 @@ To connect to the EC2 instance using MobaXterm and the `.pem` key file, follow t
 
 ```
 
-2. **Access Jenkins**:
+### 2. Access Jenkins:
    - Open Jenkins in your browser by copying the public IP address of the EC2 instance and pasting it into the address bar of your browser, followed by `:8080`. 
    - Example: `publicIP:8080`
    
@@ -174,13 +174,13 @@ To retrieve the password:
 - Copy the code and paste it into the Jenkins Getting Started screen.
 - Follow the on-screen instructions to complete the setup. Once done, you’ll be directed to the Jenkins dashboard.
 
-3. **Then click on Installed Suggested Plugins and then this appears**:
+### 3. Then click on Installed Suggested Plugins and then this appears:
 
 
-4. **Then click on Installed Suggested Plugins and then this appears**:
+### 4. Then click on Installed Suggested Plugins and then this appears:
 
 
-5. **Install Plugins in Jenkins**:
+### 5. Install Plugins in Jenkins:
 
 Now, let’s install some plugins in Jenkins:
 - NodeJS
