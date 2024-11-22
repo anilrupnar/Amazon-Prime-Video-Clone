@@ -71,11 +71,6 @@ Automate the deployment of an Amazon Video clone application using Docker and Je
 
 # Setup Instructions
 
-## Launch an EC2 Instance on AWS
-
-## Overview
-This guide provides step-by-step instructions to launch an Amazon EC2 instance configured for development or deployment purposes.
-
 ## Steps to Launch an EC2 Instance
 
 ### 1. Sign in to AWS
@@ -191,7 +186,38 @@ Now, let’s install some plugins in Jenkins:
 - Docker Pipeline
 - Docker API
 - Eclipse Temurin installer
+## Step 4: Install Docker and Set Up SonarQube
 
+Since Docker isn’t installed on our EC2 instance yet, let’s install Docker and Docker Compose, then set up SonarQube for code analysis.
+
+1. **Install Docker**:
+   - Run the command to install Docker:
+     ```bash
+     sudo apt install docker.io  # Install Docker
+     ```
+
+
+2. **Adjust Docker Permissions**:
+   - After installing Docker Compose, execute the following command to adjust permissions for other users to access the Docker socket:
+     ```bash
+     sudo chmod 666 /var/run/docker.sock  # Grant access to Docker socket
+     ```
+
+3. **Install SonarQube**:
+   - Now, set up SonarQube on our EC2 instance using Docker with the following command:
+     ```bash
+     docker run -d -p 9000:9000 sonarqube:lts-community  # Run SonarQube container
+     ```
+   - This command starts a SonarQube server in detached mode, mapping port 9000 on the host to port 9000 on the container. This setup enables us to perform code analysis and quality checks.
+     
+  ![Docker Output ](https://github.com/anilrupnar/Deploying-Virtual-Browser/blob/main/images/docker%209000.png )
+
+4. **Access SonarQube**:
+   - You can access SonarQube’s web interface at `http://localhost:9000` or by replacing `localhost` with your EC2 instance's public IP address if accessing it remotely.
+   
+   Example: `http://publicIP:9000`
+
+   SonarQube will be available on port 9000, allowing you to perform code quality analysis on your projects.
 
   
 
