@@ -465,7 +465,6 @@ pipeline {
 
 ## Step 8: Build  the Pipeline
 
-## Step 8: Run the Pipeline
 - After saving the pipeline configuration, go to the pipeline job (`prime-CICD`) in Jenkins.
 - Click **Build Now** to trigger the CI/CD pipeline.
 
