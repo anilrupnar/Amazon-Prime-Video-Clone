@@ -5,7 +5,7 @@ Automate the deployment of an Amazon Video clone application using Docker and Je
 
 ## Project Architecture Diagram
 
-   ![Project Architecture Diagram ](https://github.com/anilrupnar/Deploying-Virtual-Browser/blob/main/images/Project%20Architecture%20Diagram.gif)
+   ![Project Architecture Diagram ](https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/Project%20Architecture%20Diagram.gif)
 
 ## Prerequisites
 
