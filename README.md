@@ -3,6 +3,10 @@
 ## Objective
 Automate the deployment of an Amazon Video clone application using Docker and Jenkins to streamline development and deployment processes, ensuring efficient management of the application lifecycle.
 
+## Project Architecture Diagram
+
+   ![Project Architecture Diagram ](https://github.com/anilrupnar/Deploying-Virtual-Browser/blob/main/images/Project%20Architecture%20Diagram.gif)
+
 ## Prerequisites
 
 1. **AWS Account**: Access to AWS EC2 for hosting the application.
