@@ -146,7 +146,7 @@ To connect to the EC2 instance using MobaXterm and the `.pem` key file, follow t
    sudo systemctl status jenkins
 
 ```
-  ![Jenkins status ](https://github.com/anilrupnar/Deploying-Virtual-Browser/blob/main/images/Project%20Architecture%20Diagram.gif)
+  ![Jenkins status ](https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/Jenkins%20status.png)
   
 ### 2. Access Jenkins:
    - Open Jenkins in your browser by copying the public IP address of the EC2 instance and pasting it into the address bar of your browser, followed by `:8080`. 
@@ -168,7 +168,7 @@ To retrieve the password:
 
 ### 3. Then click on Installed Suggested Plugins and then this appears:
 
- ![Suggested Plugins ](https://github.com/anilrupnar/Deploying-Virtual-Browser/blob/main/images/login%20page.png )
+ ![Suggested Plugins ]( https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/Suggested%20Plugins.png )
 
 
 ## Step 4: Install Docker and Set Up SonarQube
