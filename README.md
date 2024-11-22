@@ -64,7 +64,6 @@ Automate the deployment of an Amazon Video clone application using Docker and Je
 | **Trivy**           | Vulnerability scanning for Docker images.                             |
 | **Git**             | Version control for source code management.                           |
 
-![SG ](https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/Project%20Architecture%20Diagram.gif)
 
 # Setup Instructions
 
@@ -211,15 +210,14 @@ Access the SonarQube web interface using a browser:
 
 SonarQube runs on port `9000` and allows you to analyze your project's code quality.
 
-  ![SonarQube server login ]( https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/SonarQube%20server%20login.png )
+ 
   
 ### 5. Initial Login
 Default **username**: `admin`  
 Default **password**: `admin`  
 After the first login, you will be prompted to change the password for security.
 
- ![Intial username ]( https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/Intial%20username.png )
-
+  ![SonarQube server login ]( https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/SonarQube%20server%20login.png )
  
 ### 6. Create a SonarQube Token
 1. Navigate to **Administration → Security → Users → Tokens**.
@@ -227,8 +225,10 @@ After the first login, you will be prompted to change the password for security.
 3. Click **Generate** and copy the **Sonar-Secret Token**.
 4. Save this token securely, as it will not be displayed again.
 
+
+ ![sonar token genration ]( https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/sonar%20token.png )
  
-  
+   
 ### 7. Set Up a Project in SonarQube
 1. Go to **Projects → Manually**.
 2. Enter the following details:
