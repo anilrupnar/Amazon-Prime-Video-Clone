@@ -71,7 +71,49 @@ Automate the deployment of an Amazon Video clone application using Docker and Je
 
 ## Setup Instructions
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/your-repo/amazon-video-clone.git
-cd amazon-video-clone
+# Launch an EC2 Instance on AWS
+
+## Overview
+This guide provides step-by-step instructions to launch an Amazon EC2 instance configured for development or deployment purposes.
+
+## Steps to Launch an EC2 Instance
+
+### 1. Sign in to AWS
+- Log in to the [AWS Management Console](https://aws.amazon.com/console/).
+- Navigate to **Services > EC2** to access the EC2 Dashboard.
+
+### 2. Launch an Instance
+1. **Name and Tags**  
+   - Provide a name for your instance (e.g., `prime-eks`).
+
+2. **Choose an AMI**  
+   - Select **Ubuntu 24.04 LTS** (free-tier eligible).
+
+3. **Select Instance Type**  
+   - Choose **t2.medium** for sufficient CPU and memory resources.
+
+### 3. Configure Instance Details
+- Leave the default settings unless customization is required.
+- Ensure **Auto-assign Public IP** is **enabled** for remote access.
+
+### 4. Add Storage
+- Allocate **25 GiB** or more, depending on the requirements of your application.
+
+### 5. Configure Security Group
+Create a new security group and add the following inbound rules:
+
+| Type         | Protocol | Port Range | Source              | Purpose                                   |
+|--------------|----------|------------|---------------------|-------------------------------------------|
+| SSH          | TCP      | 22         | My IP               | For secure remote access using SSH.      |
+| HTTP         | TCP      | 80         | Anywhere (0.0.0.0/0)| Allow web traffic.                       |
+| HTTPS        | TCP      | 443        | Anywhere (0.0.0.0/0)| Allow secure web traffic (SSL/TLS).      |
+| Custom TCP   | TCP      | 9000       | Anywhere (0.0.0.0/0)| For SonarQube or similar services.       |
+| Custom TCP   | TCP      | 8080       | Anywhere (0.0.0.0/0)| For Jenkins or other tools.              |
+
+### 6. Review and Launch
+- Confirm all configuration settings and click **Launch**.
+
+### 7. Key Pair
+- Create a new key pair or use an existing one for SSH access:
+  - Download the `.pem` file securely.
+
