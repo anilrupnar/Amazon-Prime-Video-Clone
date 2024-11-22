@@ -63,10 +63,6 @@ Automate the deployment of an Amazon Video clone application using Docker and Je
 | **SonarQube**       | Code quality management for detecting vulnerabilities and code smells. |
 | **Trivy**           | Vulnerability scanning for Docker images.                             |
 | **Git**             | Version control for source code management.                           |
-| **Linux (Ubuntu)**  | OS for hosting the tools and application.                              |
-| **SSH**             | Secure remote access to EC2 instances.                                |
-| **HTTP/HTTPS**      | Secure communication for web access.                                   |
-| **Pipeline as Code**| Manage Jenkins pipelines with code for version control and automation. |
 
 
 # Setup Instructions
@@ -150,7 +146,8 @@ To connect to the EC2 instance using MobaXterm and the `.pem` key file, follow t
    sudo systemctl status jenkins
 
 ```
-
+  ![Jenkins status ](https://github.com/anilrupnar/Deploying-Virtual-Browser/blob/main/images/Project%20Architecture%20Diagram.gif)
+  
 ### 2. Access Jenkins:
    - Open Jenkins in your browser by copying the public IP address of the EC2 instance and pasting it into the address bar of your browser, followed by `:8080`. 
    - Example: `publicIP:8080`
@@ -171,9 +168,7 @@ To retrieve the password:
 
 ### 3. Then click on Installed Suggested Plugins and then this appears:
 
-
-### 4. Then click on Installed Suggested Plugins and then this appears:
-
+ ![Suggested Plugins ](https://github.com/anilrupnar/Deploying-Virtual-Browser/blob/main/images/login%20page.png )
 
 
 ## Step 4: Install Docker and Set Up SonarQube
@@ -200,7 +195,7 @@ Since Docker isn’t installed on our EC2 instance yet, let’s install Docker a
      ```
    - This command starts a SonarQube server in detached mode, mapping port 9000 on the host to port 9000 on the container. This setup enables us to perform code analysis and quality checks.
      
-  ![Docker Output ]( )
+ 
 
 ### 4. Access SonarQube and Configure SonarQube
 Access the SonarQube web interface using a browser:  
@@ -210,17 +205,22 @@ Access the SonarQube web interface using a browser:
 
 SonarQube runs on port `9000` and allows you to analyze your project's code quality.
 
+  ![SonarQube server login ]( )
+  
 ### 5. Initial Login
 Default **username**: `admin`  
 Default **password**: `admin`  
 After the first login, you will be prompted to change the password for security.
 
+ ![Intial username ]( )
 ### 6. Create a SonarQube Token
 1. Navigate to **Administration → Security → Users → Tokens**.
 2. Enter a **Token Name**: `sonar`.
 3. Click **Generate** and copy the **Sonar-Secret Token**.
 4. Save this token securely, as it will not be displayed again.
 
+  ![SonarQube server login ]( )
+  
 ### 7. Set Up a Project in SonarQube
 1. Go to **Projects → Manually**.
 2. Enter the following details:
@@ -258,7 +258,8 @@ echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.
 sudo apt-get update
 sudo apt-get install trivy -y
 ```
-
+ ![login page ](https://github.com/anilrupnar/Deploying-Virtual-Browser/blob/main/images/login%20page.png )
+ 
 ## Step 6: Install Plugins and Configure Jenkins
 
 ### 1. Install Plugins
