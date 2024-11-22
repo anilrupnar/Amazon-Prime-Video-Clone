@@ -180,8 +180,11 @@ Since Docker isn’t installed on our EC2 instance yet, let’s install Docker a
      ```bash
      sudo apt install docker.io  # Install Docker
      ```
+   - Docker Version check :
+     
+ ![docker vesrion ]( https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/docker%20vesrion.png )
 
-
+ 
 ### 2. Adjust Docker Permissions:
    - After installing Docker Compose, execute the following command to adjust permissions for other users to access the Docker socket:
      ```bash
@@ -193,11 +196,11 @@ Since Docker isn’t installed on our EC2 instance yet, let’s install Docker a
      ```bash
      docker run -d -p 9000:9000 sonarqube:lts-community  # Run SonarQube container
      ```
-   - This command starts a SonarQube server in detached mode, mapping port 9000 on the host to port 9000 on the container. This setup enables us to perform code analysis and quality checks.
-     
- 
+   - docker container status check :
 
-### 4. Access SonarQube and Configure SonarQube
+   ![ docker container status ](https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/docker%20ps.png )
+  
+ ### 4. Access SonarQube and Configure SonarQube
 Access the SonarQube web interface using a browser:  
 - **Local Access**: `http://localhost:9000`  
 - **Remote Access**: Replace `localhost` with your EC2 instance's public IP address. Example:  
@@ -205,21 +208,23 @@ Access the SonarQube web interface using a browser:
 
 SonarQube runs on port `9000` and allows you to analyze your project's code quality.
 
-  ![SonarQube server login ]( )
+  ![SonarQube server login ]( https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/SonarQube%20server%20login.png )
   
 ### 5. Initial Login
 Default **username**: `admin`  
 Default **password**: `admin`  
 After the first login, you will be prompted to change the password for security.
 
- ![Intial username ]( )
+ ![Intial username ]( https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/Intial%20username.png )
+
+ 
 ### 6. Create a SonarQube Token
 1. Navigate to **Administration → Security → Users → Tokens**.
 2. Enter a **Token Name**: `sonar`.
 3. Click **Generate** and copy the **Sonar-Secret Token**.
 4. Save this token securely, as it will not be displayed again.
 
-  ![SonarQube server login ]( )
+ 
   
 ### 7. Set Up a Project in SonarQube
 1. Go to **Projects → Manually**.
@@ -232,13 +237,13 @@ After the first login, you will be prompted to change the password for security.
 5. Select **Continue → Other → Linux**.
 6. Copy the provided commands to set up and run the SonarQube Scanner on your local machine.
 
-![Setup Project 1 ]( )
+![Setup Project 1 ]( https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/Setup%20Project%201.png )
 
-![Setup Project 2 ]( )
+![Setup Project 2 ]( https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/Setup%20Project%202.png)
 
-![Setup Project 3 ]( )
+![Setup Project 3 ]( https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/Setup%20Project%203.png)
 
-![Setup Project 4 ]( )
+![Setup Project 4 ]( https://github.com/anilrupnar/Amazon-Prime-Video-Clone/blob/main/Images/Setup%20Project%204.png)
 
 
 ### 8. Configure Quality Gates
