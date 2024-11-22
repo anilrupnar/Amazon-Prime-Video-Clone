@@ -69,9 +69,6 @@ Automate the deployment of an Amazon Video clone application using Docker and Je
 
 ---
 
-
----
-
 ## Setup Instructions
 
 ### 1. Clone the Repository
