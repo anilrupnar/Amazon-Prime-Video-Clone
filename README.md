@@ -3,7 +3,6 @@
 ## Objective
 Automate the deployment of an Amazon Video clone application using Docker and Jenkins to streamline development and deployment processes, ensuring efficient management of the application lifecycle.
 
----
 ## Prerequisites
 
 1. **AWS Account**: Access to AWS EC2 for hosting the application.
@@ -13,7 +12,6 @@ Automate the deployment of an Amazon Video clone application using Docker and Je
 5. **Trivy**: Installed for Docker image vulnerability scanning.
 6. **Git Repository**: Version-controlled source code for the application.
 
----
 
 ## Key Features
 
@@ -50,7 +48,6 @@ Automate the deployment of an Amazon Video clone application using Docker and Je
 11. **Real-Time Monitoring and Feedback**:
     - Monitor deployment in real-time via Jenkins logs and feedback.
 
----
 
 ## Technologies Used
 
@@ -67,7 +64,6 @@ Automate the deployment of an Amazon Video clone application using Docker and Je
 | **HTTP/HTTPS**      | Secure communication for web access.                                   |
 | **Pipeline as Code**| Manage Jenkins pipelines with code for version control and automation. |
 
----
 
 # Setup Instructions
 
