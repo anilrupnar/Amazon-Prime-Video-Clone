@@ -232,11 +232,29 @@ After the first login, you will be prompted to change the password for security.
 5. Select **Continue → Other → Linux**.
 6. Copy the provided commands to set up and run the SonarQube Scanner on your local machine.
 
+![Setup Project 1 ]( )
+
+![Setup Project 2 ]( )
+
+![Setup Project 3 ]( )
+
+![Setup Project 4 ]( )
+
+![Setup Project 5 ]( )
+
+![Setup Project 6 ]( )
+
 ### 8. Configure Quality Gates
 1. Navigate to **Quality Gate → Create**.
 2. Enter the following details:
    - **Name**: `Jenkins`
    - Click **Save**.
+
+![Setup Quality Gate 1 ]( )
+
+![Setup Quality Gate 2 ]( )
+
+![Setup Quality Gate 3 ]( )
 
 ### 9. Configure a Webhook for Jenkins
 1. Go to **Administration → Configurations → Webhooks**.
