@@ -457,9 +457,9 @@ pipeline {
 
 ## Step 8: Build  the Pipeline
 
-1. **Run the Pipeline**:
-   - After saving the pipeline configuration, go to the pipeline job (`prime-CICD`) in Jenkins.
-   - Click **Build Now** to trigger the CI/CD pipeline.
+## Step 8: Run the Pipeline
+- After saving the pipeline configuration, go to the pipeline job (`prime-CICD`) in Jenkins.
+- Click **Build Now** to trigger the CI/CD pipeline.
 
 ![ build console ]( )
 
@@ -467,23 +467,21 @@ pipeline {
 
 ## Step 9: Final Application Deployed Successfully
 
-
 ![ final output ]( )
 
 ## Application Deployed Successfully on DockerHub
 
-
 ![ dockerhub status ]( )
 
-## Deployed Pipline Deployed console snapshot
+## Deployed Pipeline Console Snapshot
 
-![ pipline console ]( )
+![ pipeline console ]( )
 
-## Deployed Pipline stages snapshot
+## Deployed Pipeline Stages Snapshot
 
-  ![ pipline stages ]( )
+![ pipeline stages ]( )
 
-  
+
 **Thank you for reading my README file! 😊**
 
 **Feel free to connect with me:**
