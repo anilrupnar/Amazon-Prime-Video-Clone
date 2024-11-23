@@ -398,7 +398,7 @@ pipeline {
 
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/harshitsahu2311/Amazon-Prime-Clone-App.git'
+                git branch: 'main', url: 'https://github.com/anilrupnar/Amazon-Prime-Video-Clone.git'
             }
         }
 
@@ -447,8 +447,8 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred') {
-                        sh "docker tag prime-clone:latest harshitsahu2311/prime-clone:latest"
-                        sh "docker push harshitsahu2311/prime-clone:latest"
+                        sh "docker tag prime-clone:latest anilrupnar/prime-clone:latest"
+                        sh "docker push anilrupnar/prime-clone:latest"
                     }
                 }
             }
@@ -456,7 +456,7 @@ pipeline {
 
         stage("Deploy to Container") {
             steps {
-                sh 'docker run -d --name amazon-prime -p 80:80 harshitsahu2311/prime-clone:latest'
+                sh 'docker run -d --name amazon-prime -p 80:80 anilrupnar/prime-clone:latest'
             }
         }
     }
