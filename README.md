@@ -1,4 +1,4 @@
-# Amazon Video Clone Deployment Automation
+# Amazon prime Video Clone Deployment Automation
 
 ## Objective
 Automate the deployment of an Amazon Video clone application using Docker and Jenkins to streamline development and deployment processes, ensuring efficient management of the application lifecycle.
